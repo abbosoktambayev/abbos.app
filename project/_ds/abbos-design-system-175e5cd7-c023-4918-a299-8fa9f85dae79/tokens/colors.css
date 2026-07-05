@@ -1,0 +1,83 @@
+/*
+ * Abbos Design System — Color
+ *
+ * Dark-first with a warm-paper light variant. Reference the SEMANTIC role
+ * (--text-primary, --surface, --primary-accent), never the raw hex.
+ *
+ * Rules that live in the palette itself:
+ *   - Never pure black (#000) or pure white (#FFF). Obsidian & parchment instead.
+ *   - Gold leads (one hero per screen); emerald is the everyday workhorse.
+ *   - Text is parchment/ink at four opacities — never a new hue.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Core palette (raw) ---- */
+  --obsidian:            #0A0A0B;   /* dark background — not pure black        */
+  --deep-elevated:       #121214;   /* dark cards, sheets, elevated surfaces   */
+  --surface-2-dark:      #1A1A1D;   /* secondary fills, inactive controls      */
+  --surface-3-dark:      #222226;   /* tertiary fills, wells                   */
+  --parchment:           #F3EBDD;   /* dark-mode text & warm reading material  */
+  --paper:               #F5F1E8;   /* light-mode reading background           */
+  --soft-ivory:          #FBF8F1;   /* light-mode elevated surface             */
+  --surface-2-light:     #EFEADF;
+  --surface-3-light:     #E6E0D3;
+  --ink:                 #1C1A15;   /* light-mode text — not pure black        */
+
+  /* ---- Accents ---- */
+  --warm-gold:           #C9A96E;   /* HERO accent (dark). One per screen.     */
+  --warm-gold-light:     #9C7E45;   /* deeper gold for contrast on paper       */
+  --gold-fill:           #C9A96E;   /* constant fill for gold buttons          */
+  --on-gold:             #16130E;   /* near-black ink that sits on gold        */
+  --muted-emerald:       #3E7A63;   /* product workhorse (dark) — never neon   */
+  --muted-emerald-light: #2F6A54;
+  --emerald-deep:        #346854;   /* pressed / deep emerald (dark)           */
+  --emerald-deep-light:  #265846;
+  --warning:             #D6AE5C;   /* caution — never alarm red               */
+  --warning-light:       #A88414;
+  --danger:              #CE6E62;   /* destructive / failed                    */
+  --danger-light:        #B24A40;
+
+  /* ---- Backward-compatible aliases ---- */
+  --elevated-surface:    var(--deep-elevated);
+  --gold:                var(--warm-gold);
+  --emerald:             var(--muted-emerald);
+
+  /* ---- Dark theme semantics ---- */
+  --background:          var(--obsidian);
+  --surface:             var(--deep-elevated);
+  --surface-2:           var(--surface-2-dark);
+  --surface-3:           var(--surface-3-dark);
+  --text-primary:        var(--parchment);
+  --text-secondary:      rgba(243, 235, 221, 0.68);
+  --text-tertiary:       rgba(243, 235, 221, 0.40);
+  --text-muted:          rgba(243, 235, 221, 0.20);
+  --primary-accent:      var(--warm-gold);
+  --gold-dim:            rgba(201, 169, 110, 0.16);
+  --state-accent:        var(--muted-emerald);
+  --emerald-dim:         rgba(62, 122, 99, 0.20);
+  --hairline:            rgba(243, 235, 221, 0.10);
+  --hairline-soft:       rgba(243, 235, 221, 0.06);
+  --reading-surface:     var(--deep-elevated);
+}
+
+/* ---- Light theme semantics (warm paper, not an inverted screen) ---- */
+[data-theme="light"] {
+  color-scheme: light;
+  --background:          var(--paper);
+  --surface:             var(--soft-ivory);
+  --surface-2:           var(--surface-2-light);
+  --surface-3:           var(--surface-3-light);
+  --text-primary:        var(--ink);
+  --text-secondary:      rgba(28, 26, 21, 0.62);
+  --text-tertiary:       rgba(28, 26, 21, 0.42);
+  --text-muted:          rgba(28, 26, 21, 0.22);
+  --primary-accent:      var(--warm-gold-light);
+  --gold-dim:            rgba(156, 126, 69, 0.14);
+  --state-accent:        var(--muted-emerald-light);
+  --emerald-dim:         rgba(47, 106, 84, 0.14);
+  --hairline:            rgba(28, 26, 21, 0.12);
+  --hairline-soft:       rgba(28, 26, 21, 0.07);
+  --reading-surface:     var(--paper);
+}

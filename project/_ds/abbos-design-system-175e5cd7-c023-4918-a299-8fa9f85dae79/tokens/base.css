@@ -1,0 +1,14 @@
+/*
+ * Abbos Design System — base document defaults.
+ * Minimal reset so a bare page adopts the dark-first warm palette.
+ */
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

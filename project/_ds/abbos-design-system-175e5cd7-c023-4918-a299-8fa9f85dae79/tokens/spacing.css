@@ -1,0 +1,17 @@
+/*
+ * Abbos Design System — Spacing
+ * Whitespace = confidence. A 4-based scale. When unsure, add air, not elements.
+ * Default screen horizontal margin: 16–18px. Card inner padding: 14–22px.
+ */
+
+:root {
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-xxl: 64px;
+
+  --screen-margin: 18px;   /* default horizontal screen inset */
+  --card-padding:  20px;   /* default card inner padding      */
+}

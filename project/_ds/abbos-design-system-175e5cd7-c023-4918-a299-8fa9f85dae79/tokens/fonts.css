@@ -1,0 +1,16 @@
+/*
+ * Abbos Design System — Webfonts
+ *
+ * All four bundled families are OFL-licensed and loaded from Google Fonts here.
+ * (In the native apps these are self-hosted .ttf; on web we pull the same faces
+ * from Google's CDN so the @font-face closure ships to consumers automatically.)
+ *
+ *   Cormorant Garamond → editorial serif (hero, titles, product names, numbers)
+ *   IBM Plex Mono      → metadata needing Cyrillic + Latin (RU/EN eyebrows)
+ *   DM Mono            → metadata, Latin / numeric only
+ *   Amiri Quran        → Quranic Arabic text only
+ *
+ * UI text uses the SYSTEM font (SF Pro / -apple-system) — never bundled.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Mono:wght@300;400;500&family=Amiri+Quran&display=swap');

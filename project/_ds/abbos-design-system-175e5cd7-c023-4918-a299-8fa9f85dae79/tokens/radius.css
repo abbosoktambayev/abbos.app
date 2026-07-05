@@ -1,0 +1,16 @@
+/*
+ * Abbos Design System — Corner radius
+ * Always continuous / squircle, never sharp. Bigger surface = bigger radius.
+ * Don't mix a 12px button edge-to-edge inside a 28px card — nest with padding.
+ */
+
+:root {
+  --radius-card:    28px;   /* large cards, bottom bars, sheets, hero card */
+  --radius-card-alt:22px;   /* secondary big card, toast / banner          */
+  --radius-list:    18px;   /* list containers, grouped rows               */
+  --radius-control: 16px;   /* standard buttons, medium containers         */
+  --radius-button:  14px;   /* inline filled buttons                       */
+  --radius-small:   12px;   /* chips, small controls, number wells         */
+  --radius-tiny:     9px;   /* tiny number / index badges                  */
+  --radius-pill:   999px;   /* filters, page counter, mini-player, tags    */
+}

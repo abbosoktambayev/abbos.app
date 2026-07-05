@@ -1,0 +1,26 @@
+/*
+ * Abbos Design System — Elevation & Motion
+ *
+ * Elevation: borders first. Separate surfaces with a 0.5–0.7px hairline, not a
+ * shadow. Exactly one sanctioned soft shadow, used only where something floats.
+ *
+ * Motion: slow, soft, calm, functional. No bounce, spring or elastic.
+ * Every animation must honour prefers-reduced-motion.
+ */
+
+:root {
+  /* One sanctioned shadow — soft, sparingly used */
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.18);
+
+  /* Motion */
+  --ease-standard:     cubic-bezier(0.4, 0.0, 0.2, 1); /* @kind other */
+  --duration-standard: 0.35s; /* @kind other */
+  --duration-gentle:   0.5s;  /* @kind other */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-standard: 0.001s; /* @kind other */
+    --duration-gentle:   0.001s; /* @kind other */
+  }
+}

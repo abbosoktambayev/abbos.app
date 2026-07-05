@@ -1,0 +1,304 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "ui_kits/hafiz/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Cormorant Garamond|IBM Plex Mono|DM Mono|Amiri Quran))/i]",
+        "message": "Font not provided by the design system. Available: Cormorant Garamond, IBM Plex Mono, DM Mono, Amiri Quran."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|solid|style|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, tone, solid, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:emerald|gold|neutral|warning|danger)$/]",
+        "message": "<Badge> tone must be one of 'emerald' | 'gold' | 'neutral' | 'warning' | 'danger'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|full|disabled|iconLeft|iconRight|style|onClick|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, full, disabled, iconLeft, iconRight, style, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:gold|emerald|ghost|quiet|danger)$/]",
+        "message": "<Button> variant must be one of 'gold' | 'emerald' | 'ghost' | 'quiet' | 'danger'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|radius|floating|reading|padding|style|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: children, radius, floating, reading, padding, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute[name.name='radius'] > Literal[value!=/^(?:card|cardAlt|list|control)$/]",
+        "message": "<Card> radius must be one of 'card' | 'cardAlt' | 'list' | 'control'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|active|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<Chip> doesn't accept that prop. Declared props: children, active, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EmptyState'] > JSXAttribute > JSXIdentifier[name!=/^(?:glyph|title|hint|action|style|key|ref|className|style|children)$/]",
+        "message": "<EmptyState> doesn't accept that prop. Declared props: glyph, title, hint, action, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Eyebrow'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|cyrillic|color|style|key|ref|className|style|children)$/]",
+        "message": "<Eyebrow> doesn't accept that prop. Declared props: children, cyrillic, color, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Icon'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|size|strokeWidth|color|style|key|ref|className|style|children)$/]",
+        "message": "<Icon> doesn't accept that prop. Declared props: name, size, strokeWidth, color, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ListRow'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|subtitle|leading|trailing|chevron|divider|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<ListRow> doesn't accept that prop. Declared props: title, subtitle, leading, trailing, chevron, divider, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProgressRing'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|size|stroke|accent|label|showValue|style|key|ref|className|style|children)$/]",
+        "message": "<ProgressRing> doesn't accept that prop. Declared props: value, size, stroke, accent, label, showValue, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProgressRing'] > JSXAttribute[name.name='accent'] > Literal[value!=/^(?:emerald|gold)$/]",
+        "message": "<ProgressRing> accent must be one of 'emerald' | 'gold'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "Chip": {
+        "replaces": []
+      },
+      "EmptyState": {
+        "replaces": []
+      },
+      "Eyebrow": {
+        "replaces": []
+      },
+      "Icon": {
+        "replaces": []
+      },
+      "ListRow": {
+        "replaces": []
+      },
+      "ProgressRing": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--background",
+      "--card-padding",
+      "--danger",
+      "--danger-light",
+      "--deep-elevated",
+      "--duration-gentle",
+      "--duration-standard",
+      "--ease-standard",
+      "--elevated-surface",
+      "--emerald",
+      "--emerald-deep",
+      "--emerald-deep-light",
+      "--emerald-dim",
+      "--font-brand",
+      "--font-mono",
+      "--font-mono-latin",
+      "--font-quran",
+      "--font-ui",
+      "--gold",
+      "--gold-dim",
+      "--gold-fill",
+      "--hairline",
+      "--hairline-soft",
+      "--ink",
+      "--muted-emerald",
+      "--muted-emerald-light",
+      "--obsidian",
+      "--on-gold",
+      "--paper",
+      "--parchment",
+      "--primary-accent",
+      "--radius-button",
+      "--radius-card",
+      "--radius-card-alt",
+      "--radius-control",
+      "--radius-list",
+      "--radius-pill",
+      "--radius-small",
+      "--radius-tiny",
+      "--reading-surface",
+      "--screen-margin",
+      "--shadow-soft",
+      "--soft-ivory",
+      "--space-lg",
+      "--space-md",
+      "--space-sm",
+      "--space-xl",
+      "--space-xs",
+      "--space-xxl",
+      "--state-accent",
+      "--surface",
+      "--surface-2",
+      "--surface-2-dark",
+      "--surface-2-light",
+      "--surface-3",
+      "--surface-3-dark",
+      "--surface-3-light",
+      "--text-body",
+      "--text-callout",
+      "--text-display",
+      "--text-foot",
+      "--text-h",
+      "--text-hero",
+      "--text-meta",
+      "--text-muted",
+      "--text-primary",
+      "--text-secondary",
+      "--text-sub",
+      "--text-tertiary",
+      "--text-tiny",
+      "--text-title",
+      "--tracking-meta",
+      "--tracking-tight",
+      "--warm-gold",
+      "--warm-gold-light",
+      "--warning",
+      "--warning-light"
+    ],
+    "tokenKinds": {
+      "--obsidian": "color",
+      "--deep-elevated": "color",
+      "--surface-2-dark": "color",
+      "--surface-3-dark": "color",
+      "--parchment": "color",
+      "--paper": "color",
+      "--soft-ivory": "color",
+      "--surface-2-light": "color",
+      "--surface-3-light": "color",
+      "--ink": "color",
+      "--warm-gold": "color",
+      "--warm-gold-light": "color",
+      "--gold-fill": "color",
+      "--on-gold": "color",
+      "--muted-emerald": "color",
+      "--muted-emerald-light": "color",
+      "--emerald-deep": "color",
+      "--emerald-deep-light": "color",
+      "--warning": "color",
+      "--warning-light": "color",
+      "--danger": "color",
+      "--danger-light": "color",
+      "--elevated-surface": "color",
+      "--gold": "color",
+      "--emerald": "color",
+      "--background": "color",
+      "--surface": "color",
+      "--surface-2": "color",
+      "--surface-3": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-tertiary": "font",
+      "--text-muted": "font",
+      "--primary-accent": "color",
+      "--gold-dim": "color",
+      "--state-accent": "color",
+      "--emerald-dim": "color",
+      "--hairline": "color",
+      "--hairline-soft": "color",
+      "--reading-surface": "color",
+      "--font-brand": "font",
+      "--font-ui": "font",
+      "--font-mono": "font",
+      "--font-mono-latin": "font",
+      "--font-quran": "font",
+      "--text-hero": "font",
+      "--text-display": "font",
+      "--text-title": "font",
+      "--text-h": "font",
+      "--text-body": "font",
+      "--text-callout": "font",
+      "--text-sub": "font",
+      "--text-foot": "font",
+      "--text-meta": "font",
+      "--text-tiny": "font",
+      "--tracking-meta": "font",
+      "--tracking-tight": "font",
+      "--space-xs": "spacing",
+      "--space-sm": "spacing",
+      "--space-md": "spacing",
+      "--space-lg": "spacing",
+      "--space-xl": "spacing",
+      "--space-xxl": "spacing",
+      "--screen-margin": "spacing",
+      "--card-padding": "spacing",
+      "--radius-card": "radius",
+      "--radius-card-alt": "radius",
+      "--radius-list": "radius",
+      "--radius-control": "radius",
+      "--radius-button": "radius",
+      "--radius-small": "radius",
+      "--radius-tiny": "radius",
+      "--radius-pill": "radius",
+      "--shadow-soft": "shadow",
+      "--ease-standard": "other",
+      "--duration-standard": "other",
+      "--duration-gentle": "other"
+    },
+    "fontFamilies": [
+      "Amiri Quran",
+      "Cormorant Garamond",
+      "DM Mono",
+      "IBM Plex Mono"
+    ]
+  }
+}
