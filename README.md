@@ -1,25 +1,38 @@
-# CODING AGENTS: READ THIS FIRST
+# abbos.app — Hafiz
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+The marketing site for **Hafiz**, a calm Quran memorization app for iPhone (Sabaq / Sabqi / Manzil), built by [Abbos Oktambayev](https://github.com/abbosoktambayev). Dark, warm-gold, editorial — no ads, no noise.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+**Live pages**
 
-## What you should do — IMPORTANT
+| Route | Purpose |
+|---|---|
+| `/` | Landing page — hero, features, product tour, philosophy, support, about |
+| `/privacy/` | Privacy Policy |
+| `/support/` | Support the project + contact |
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+## Stack
 
-**Read `project/index.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+Plain HTML/CSS/JS, no build step. Static files only — deploy by pointing any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages) at the repo root.
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+```
+index.html          Landing page
+privacy/index.html  Privacy Policy
+support/index.html  Support & contact
 
-## About the design files
+css/tokens.css       Design tokens (color, type, radius, motion) + self-hosted fonts
+css/site.css         Layout & components, shared across all pages
+js/site.js           Nav scroll state, mobile menu, scroll-reveal animations
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+assets/              Product screenshots, app icon
+assets/fonts/        Self-hosted Cormorant Garamond + DM Mono (woff2, Latin + Latin-ext)
+```
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+## Design
 
-## Bundle contents
+Built on the Abbos Design System — dark obsidian background, one warm-gold accent per screen, muted emerald as the everyday workhorse, Cormorant Garamond for editorial headings, system sans for UI text, DM Mono for tracked labels. Hairline borders, no gradients/glow/glassmorphism, slow soft motion.
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `landing` project files (HTML prototypes, assets, components)
+The original Claude Design handoff (chat transcript + HTML prototypes this site was implemented from) is kept in [`project/`](project) and [`chats/`](chats) for provenance.
+
+## License
+
+All rights reserved.
