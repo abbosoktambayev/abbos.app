@@ -348,9 +348,9 @@ html[data-theme="light"] .device { border-color: rgba(28, 26, 21, 0.22); }
 
 /* Widgets mock (no screenshot available — built in-system) */
 .widget-stage {
-  width: 300px;
+  width: 324px;
   max-width: 100%;
-  padding: 26px;
+  padding: 24px;
   border-radius: var(--radius-card);
   border: 0.7px solid var(--hairline);
   background:
@@ -364,7 +364,8 @@ html[data-theme="light"] .device { border-color: rgba(28, 26, 21, 0.22); }
   background: var(--surface);
   border: 0.7px solid var(--hairline);
   border-radius: var(--radius-card-alt);
-  padding: 18px;
+  padding: 16px;
+  min-width: 0;
 }
 .widget.lg { min-height: 150px; display: flex; flex-direction: column; }
 .widget .wtop { display: flex; align-items: center; justify-content: space-between; }
@@ -379,11 +380,12 @@ html[data-theme="light"] .device { border-color: rgba(28, 26, 21, 0.22); }
 .widget .wsub { font-family: var(--font-ui); font-size: 13px; color: var(--text-secondary); }
 .widget .wbar { margin-top: auto; height: 4px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
 .widget .wbar i { display:block; height: 100%; border-radius: 999px; background: var(--state-accent); }
-.widget-row { display: flex; gap: 16px; }
-.widget-row .widget { flex: 1; }
-.wring { display:flex; align-items:center; gap: 14px; }
+.widget-row { display: flex; gap: 14px; }
+.widget-row .widget { flex: 1 1 0; }
+.widget-row .widget:first-child { flex: 1.6 1 0; }
+.wring { display:flex; align-items:center; gap: 12px; }
 .wring .ring {
-  width: 52px; height: 52px; border-radius: 50%; flex: none;
+  width: 46px; height: 46px; border-radius: 50%; flex: none;
   background: conic-gradient(var(--primary-accent) 0 55%, var(--surface-3) 55% 100%);
   -webkit-mask: radial-gradient(farthest-side, transparent 60%, #000 61%);
   mask: radial-gradient(farthest-side, transparent 60%, #000 61%);
