@@ -14,11 +14,16 @@
     return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
   }
 
-  // App screenshots follow the site theme
+  // App screenshots, logos and favicon follow the site theme
   function syncScreens(theme) {
     document.querySelectorAll('img[data-screen]').forEach(function (img) {
       img.src = '/assets/screen-' + img.getAttribute('data-screen') + '-' + theme + '.jpg';
     });
+    document.querySelectorAll('img[data-logo]').forEach(function (img) {
+      img.src = '/assets/app-icon-' + theme + '.png';
+    });
+    var favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) favicon.href = '/assets/app-icon-' + theme + '.png';
   }
 
   function setTheme(theme, persist) {

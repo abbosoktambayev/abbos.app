@@ -14,8 +14,9 @@ a { color: inherit; text-decoration: none; }
   --maxw: 1200px;
   --gutter: clamp(20px, 5vw, 44px);
   --section-gap: clamp(88px, 13vw, 168px);
-  --mark: url("/assets/app-icon.png");
+  --mark: url("/assets/app-icon-dark.png");
 }
+html[data-theme="light"] { --mark: url("/assets/app-icon-light.png"); }
 
 /* first section on pages without a hero (privacy, support) */
 .page-top { padding-top: clamp(140px, 20vh, 196px); }
