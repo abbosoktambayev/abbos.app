@@ -119,30 +119,61 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-/* ---------- Color (dark-first, never pure black/white) ---------- */
+/* ---------- Color (dark-first, warm-paper light variant) ---------- */
 :root {
   color-scheme: dark;
 
-  --obsidian:       #0A0A0B;
-  --deep-elevated:  #121214;
-  --surface-3-dark: #222226;
-  --parchment:      #F3EBDD;
-  --warm-gold:      #C9A96E;
-  --muted-emerald:  #3E7A63;
+  /* raw palette (ADS) */
+  --obsidian:            #0A0A0B;
+  --deep-elevated:       #121214;
+  --surface-2-dark:      #1A1A1D;
+  --surface-3-dark:      #222226;
+  --parchment:           #F3EBDD;
+  --paper:               #F5F1E8;
+  --soft-ivory:          #FBF8F1;
+  --surface-2-light:     #EFEADF;
+  --surface-3-light:     #E6E0D3;
+  --ink:                 #1C1A15;
+  --warm-gold:           #C9A96E;
+  --warm-gold-light:     #9C7E45;
+  --muted-emerald:       #3E7A63;
+  --muted-emerald-light: #2F6A54;
 
+  /* dark theme semantics (default) */
   --background:     var(--obsidian);
   --surface:        var(--deep-elevated);
+  --surface-2:      var(--surface-2-dark);
   --surface-3:      var(--surface-3-dark);
   --text-primary:   var(--parchment);
   --text-secondary: rgba(243, 235, 221, 0.68);
   --text-tertiary:  rgba(243, 235, 221, 0.40);
   --primary-accent: var(--warm-gold);
   --gold-fill:      var(--warm-gold);
+  --gold-dim:       rgba(201, 169, 110, 0.16);
   --on-gold:        #16130E;
   --state-accent:   var(--muted-emerald);
   --emerald-dim:    rgba(62, 122, 99, 0.20);
   --hairline:       rgba(243, 235, 221, 0.10);
   --hairline-soft:  rgba(243, 235, 221, 0.06);
+}
+
+/* light theme — warm paper, never an inverted screen */
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --background:     var(--paper);
+  --surface:        var(--soft-ivory);
+  --surface-2:      var(--surface-2-light);
+  --surface-3:      var(--surface-3-light);
+  --text-primary:   var(--ink);
+  --text-secondary: rgba(28, 26, 21, 0.62);
+  --text-tertiary:  rgba(28, 26, 21, 0.42);
+  --primary-accent: var(--warm-gold-light);
+  --gold-dim:       rgba(156, 126, 69, 0.14);
+  --state-accent:   var(--muted-emerald-light);
+  --emerald-dim:    rgba(47, 106, 84, 0.14);
+  --hairline:       rgba(28, 26, 21, 0.12);
+  --hairline-soft:  rgba(28, 26, 21, 0.07);
 }
 
 /* ---------- Typography ---------- */

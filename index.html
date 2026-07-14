@@ -3,9 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hafiz — A calm Quran memorization app for iPhone</title>
-<meta name="description" content="Hafiz is a calm Quran memorization app for iPhone. Memorize, revise, listen and stay consistent with the Qur'an — without ads, noise, or pressure. From abbos.app." />
+<title>Hafiz — A calm Quran memorization app for iPhone &amp; iPad</title>
+<meta name="description" content="Hafiz is a calm Quran memorization app for iPhone and iPad, with light and dark appearances. Memorize, revise, listen and stay consistent with the Qur'an — without ads, noise, or pressure. From abbos.app." />
 <link rel="icon" href="/assets/app-icon.png" />
+<script>
+try {
+  var q = new URLSearchParams(location.search).get('theme');
+  var t = (q === 'light' || q === 'dark') ? q : localStorage.getItem('theme');
+  if (t === 'light' || (!t && matchMedia('(prefers-color-scheme: light)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+} catch (e) {}
+</script>
 <link rel="stylesheet" href="/css/tokens.css" />
 <link rel="stylesheet" href="/css/site.css" />
 </head>
@@ -22,31 +31,32 @@
     <a href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener">GitHub</a>
     <a href="/support/">Support</a>
     <a class="btn btn-gold btn-sm" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> Join TestFlight</a>
+    <button class="theme-toggle" type="button" aria-label="Switch appearance"><span class="moon" data-lucide="moon"></span><span class="sun" data-lucide="sun"></span></button>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ============ HERO ============ -->
 <header class="hero wrap" id="top">
-  <p class="eyebrow center reveal">Quran memorization · iPhone</p>
+  <p class="eyebrow center reveal">Quran memorization · iPhone &amp; iPad</p>
   <div class="kicker reveal d1">Hafiz</div>
-  <h1 class="display reveal d1">A calm Quran memorization app for iPhone.</h1>
+  <h1 class="display reveal d1">A calm Quran memorization app for iPhone &amp; iPad.</h1>
   <p class="lead hero-sub reveal d2">Built for Muslims who want to memorize, revise, listen, and stay consistent with the Qur'an — without ads, noise, or pressure.</p>
   <div class="cta reveal d3">
     <a class="btn btn-gold" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> Join TestFlight</a>
     <a class="btn btn-ghost" href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener"><span data-lucide="github"></span> View on GitHub</a>
   </div>
-  <p class="beta-note reveal d3"><span class="beta-dot"></span> Currently in private beta · iOS only</p>
+  <p class="beta-note reveal d3"><span class="beta-dot"></span> Currently in private beta · iOS &amp; iPadOS</p>
 
   <div class="hero-stage reveal d3">
     <div class="device side l float">
-      <div class="screen"><img src="/assets/screen-audio.png" alt="Hafiz — Audio, reciters and calm background sounds" loading="lazy" /></div>
+      <div class="screen"><img data-screen="audio" src="/assets/screen-audio-dark.jpg" alt="Hafiz — Audio, reciters and calm background sounds" loading="lazy" /></div>
     </div>
     <div class="device center float">
-      <div class="screen"><img src="/assets/screen-today.png" alt="Hafiz — Today, your daily hifz plan and progress" /></div>
+      <div class="screen"><img data-screen="today" src="/assets/screen-today-dark.jpg" alt="Hafiz — Today, your daily hifz plan and progress" /></div>
     </div>
     <div class="device side r float">
-      <div class="screen"><img src="/assets/screen-mushaf.png" alt="Hafiz — Mushaf, a focused Qur'an reading view" loading="lazy" /></div>
+      <div class="screen"><img data-screen="mushaf" src="/assets/screen-mushaf-dark.jpg" alt="Hafiz — Mushaf, a focused Qur'an reading view" loading="lazy" /></div>
     </div>
   </div>
 </header>
@@ -110,7 +120,7 @@
     <!-- Today -->
     <div class="block reveal">
       <div class="block-media">
-        <div class="device"><div class="screen"><img src="/assets/screen-today.png" alt="Hafiz Today screen" loading="lazy" /></div></div>
+        <div class="device"><div class="screen"><img data-screen="today" src="/assets/screen-today-dark.jpg" alt="Hafiz Today screen" loading="lazy" /></div></div>
       </div>
       <div class="block-copy">
         <div class="k">Today</div>
@@ -123,7 +133,7 @@
     <!-- Mushaf -->
     <div class="block flip wide-media reveal">
       <div class="block-media">
-        <div class="device"><div class="screen"><img src="/assets/screen-mushaf.png" alt="Hafiz Mushaf reading screen" loading="lazy" /></div></div>
+        <div class="device"><div class="screen"><img data-screen="mushaf" src="/assets/screen-mushaf-dark.jpg" alt="Hafiz Mushaf reading screen" loading="lazy" /></div></div>
       </div>
       <div class="block-copy">
         <div class="k">Mushaf</div>
@@ -136,7 +146,7 @@
     <!-- Audio -->
     <div class="block reveal">
       <div class="block-media">
-        <div class="device"><div class="screen"><img src="/assets/screen-player.png" alt="Hafiz Audio player screen" loading="lazy" /></div></div>
+        <div class="device"><div class="screen"><img data-screen="player" src="/assets/screen-player-dark.jpg" alt="Hafiz Audio player screen" loading="lazy" /></div></div>
       </div>
       <div class="block-copy">
         <div class="k">Audio</div>
@@ -183,6 +193,29 @@
   </div>
 </section>
 
+<!-- ============ APPEARANCE ============ -->
+<section class="section wrap" id="appearance">
+  <div class="section-head center reveal">
+    <p class="eyebrow center">Appearance</p>
+    <h2 class="display">Warm paper by day, <span class="gold serif">obsidian by night.</span></h2>
+    <p class="lead">Hafiz comes in two appearances: a warm paper light mode and the original obsidian dark. It follows your system setting — on iPhone and iPad alike.</p>
+  </div>
+  <div class="appearance-stage">
+    <div class="appearance-item on-paper reveal">
+      <div class="well">
+        <div class="device"><div class="screen"><img src="/assets/screen-today-light.jpg" alt="Hafiz Today screen in light appearance" loading="lazy" /></div></div>
+      </div>
+      <span class="alabel"><span data-lucide="sun"></span> Light · Paper</span>
+    </div>
+    <div class="appearance-item on-obsidian reveal d1">
+      <div class="well">
+        <div class="device"><div class="screen"><img src="/assets/screen-today-dark.jpg" alt="Hafiz Today screen in dark appearance" loading="lazy" /></div></div>
+      </div>
+      <span class="alabel"><span data-lucide="moon"></span> Dark · Obsidian</span>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PHILOSOPHY ============ -->
 <section class="section wrap philosophy" id="philosophy">
   <div class="section-head reveal">
@@ -214,7 +247,7 @@
       </div>
     </div>
     <div class="support-media">
-      <div class="device"><div class="screen"><img src="/assets/screen-support.png" alt="Hafiz support screen — optional, voluntary contributions" loading="lazy" /></div></div>
+      <div class="device"><div class="screen"><img data-screen="support" src="/assets/screen-support-dark.jpg" alt="Hafiz support screen — optional, voluntary contributions" loading="lazy" /></div></div>
     </div>
   </div>
 </section>
