@@ -8,17 +8,22 @@
 <link rel="icon" href="/assets/app-icon.png" />
 <script>
 try {
-  var q = new URLSearchParams(location.search).get('theme');
-  var t = (q === 'light' || q === 'dark') ? q : localStorage.getItem('theme');
+  var q = new URLSearchParams(location.search);
+  var qt = q.get('theme');
+  var t = (qt === 'light' || qt === 'dark') ? qt : localStorage.getItem('theme');
   if (t === 'light' || (!t && matchMedia('(prefers-color-scheme: light)').matches)) {
     document.documentElement.setAttribute('data-theme', 'light');
   }
+  var ql = q.get('lang');
+  var l = (ql === 'ru' || ql === 'en') ? ql : localStorage.getItem('lang');
+  if (!l) l = ((navigator.language || '').toLowerCase().indexOf('ru') === 0) ? 'ru' : 'en';
+  if (l === 'ru') document.documentElement.setAttribute('lang', 'ru');
 } catch (e) {}
 </script>
 <link rel="stylesheet" href="/css/tokens.css" />
 <link rel="stylesheet" href="/css/site.css" />
 </head>
-<body>
+<body data-page="support">
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav" data-screen-label="nav">
@@ -29,9 +34,10 @@ try {
   <div class="nav-links" id="navLinks">
     <a href="/#inside">Hafiz</a>
     <a href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener">GitHub</a>
-    <a href="/support/">Support</a>
-    <a class="btn btn-gold btn-sm" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> Join TestFlight</a>
+    <a href="/support/" data-i18n="nav.support">Support</a>
+    <a class="btn btn-gold btn-sm" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> <span data-i18n="nav.testflight">Join TestFlight</span></a>
     <button class="theme-toggle" type="button" aria-label="Switch appearance"><span class="moon" data-lucide="moon"></span><span class="sun" data-lucide="sun"></span></button>
+    <button class="lang-toggle" type="button" aria-label="Switch language">RU</button>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -39,20 +45,20 @@ try {
 <!-- ============ SUPPORT ============ -->
 <section class="section wrap page-top">
   <div class="section-head reveal">
-    <p class="eyebrow">Support</p>
-    <h1 class="display">Support <span class="gold serif">&amp; contact.</span></h1>
-    <p class="lead">Hafiz is designed to remain free and ad-free. Optional support helps keep development going, but the core experience stays open to everyone.</p>
+    <p class="eyebrow" data-i18n="nav.support">Support</p>
+    <h1 class="display" data-i18n="sp.h1">Support <span class="gold serif">&amp; contact.</span></h1>
+    <p class="lead" data-i18n="sp.lead">Hafiz is designed to remain free and ad-free. Optional support helps keep development going, but the core experience stays open to everyone.</p>
   </div>
 
   <div class="support-card reveal d1">
     <div class="support-body">
       <div class="heart"><span data-lucide="heart"></span></div>
-      <h2 class="display">Free, ad-free, and <span class="gold serif">supported by choice.</span></h2>
-      <p class="lead">Nothing is required. A small contribution goes toward hosting, App Store fees, and the time spent building Hafiz — quietly, without a hard sell.</p>
+      <h2 class="display" data-i18n="sup.h2">Free, ad-free, and <span class="gold serif">supported by choice.</span></h2>
+      <p class="lead" data-i18n="sp.cardlead">Nothing is required. A small contribution goes toward hosting, App Store fees, and the time spent building Hafiz — quietly, without a hard sell.</p>
       <div class="support-tiers">
-        <span class="tier"><b>$1.99</b> · Small support</span>
-        <span class="tier"><b>$4.99</b> · Generous</span>
-        <span class="tier"><b>$9.99</b> · Big contribution</span>
+        <span class="tier" data-i18n="sup.t1"><b>$1.99</b> · Small support</span>
+        <span class="tier" data-i18n="sup.t2"><b>$4.99</b> · Generous</span>
+        <span class="tier" data-i18n="sup.t3"><b>$9.99</b> · Big contribution</span>
       </div>
     </div>
     <div class="support-media">
@@ -64,16 +70,16 @@ try {
 <!-- ============ CONTACT ============ -->
 <section class="section wrap" id="contact">
   <div class="section-head reveal">
-    <p class="eyebrow">Get in touch</p>
-    <h2 class="display">Questions, feedback, <span class="gold serif">or bugs.</span></h2>
-    <p class="lead">Hafiz is in private beta — feedback shapes what comes next. Reach out directly, or join the beta on TestFlight.</p>
+    <p class="eyebrow" data-i18n="sp.touch">Get in touch</p>
+    <h2 class="display" data-i18n="sp.h2c">Questions, feedback, <span class="gold serif">or bugs.</span></h2>
+    <p class="lead" data-i18n="sp.leadc">Hafiz is in private beta — feedback shapes what comes next. Reach out directly, or join the beta on TestFlight.</p>
   </div>
 
   <div class="contact-list reveal d1">
     <a class="contact-row" href="mailto:oktambayevabbos1@gmail.com">
       <span class="cic"><span data-lucide="mail"></span></span>
       <span class="ctext">
-        <span class="ctitle">Email</span>
+        <span class="ctitle" data-i18n="sp.email">Email</span>
         <span class="csub">oktambayevabbos1@gmail.com</span>
       </span>
       <span class="carrow"><span data-lucide="arrow-up-right"></span></span>
@@ -89,8 +95,8 @@ try {
     <a class="contact-row" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener">
       <span class="cic"><span data-lucide="send"></span></span>
       <span class="ctext">
-        <span class="ctitle">Join TestFlight</span>
-        <span class="csub">Private beta · iOS only</span>
+        <span class="ctitle" data-i18n="cta.testflight">Join TestFlight</span>
+        <span class="csub" data-i18n="sp.beta">Private beta · iOS only</span>
       </span>
       <span class="carrow"><span data-lucide="arrow-up-right"></span></span>
     </a>
@@ -105,23 +111,24 @@ try {
         <span class="icon"><img data-logo src="/assets/app-icon-dark.png" alt="Hafiz app icon" /></span>
         <span class="name">abbos.app</span>
       </div>
-      <p class="tagline">Building calm Islamic products for Apple platforms.</p>
+      <p class="tagline" data-i18n="foot.tagline">Building calm Islamic products for Apple platforms.</p>
     </div>
     <div class="footer-links">
       <a href="/#inside">Hafiz</a>
-      <a href="/privacy/">Privacy Policy</a>
-      <a href="/support/">Support</a>
+      <a href="/privacy/" data-i18n="foot.privacy">Privacy Policy</a>
+      <a href="/support/" data-i18n="nav.support">Support</a>
       <a href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:oktambayevabbos1@gmail.com">Contact</a>
+      <a href="mailto:oktambayevabbos1@gmail.com" data-i18n="foot.contact">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 abbos.app · Hafiz</span>
-    <span>Made with intention · Astana</span>
+    <span data-i18n="foot.made">Made with intention · Astana</span>
   </div>
 </footer>
 
 <script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+<script src="/js/i18n.js"></script>
 <script src="/js/site.js"></script>
 </body>
 </html>

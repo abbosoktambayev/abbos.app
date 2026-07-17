@@ -170,6 +170,23 @@ body::before {
               border-color var(--duration-standard) var(--ease-standard);
 }
 .theme-toggle:hover { color: var(--primary-accent); border-color: var(--primary-accent); }
+.lang-toggle {
+  height: 36px;
+  padding: 0 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent;
+  border: 0.7px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-family: var(--font-mono-latin);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  flex: none;
+  transition: color var(--duration-standard) var(--ease-standard),
+              border-color var(--duration-standard) var(--ease-standard);
+}
+.lang-toggle:hover { color: var(--primary-accent); border-color: var(--primary-accent); }
 .theme-toggle svg { width: 16px; height: 16px; }
 .theme-toggle .sun { display: none; }
 .theme-toggle .moon { display: block; }

@@ -8,17 +8,22 @@
 <link rel="icon" href="/assets/app-icon.png" />
 <script>
 try {
-  var q = new URLSearchParams(location.search).get('theme');
-  var t = (q === 'light' || q === 'dark') ? q : localStorage.getItem('theme');
+  var q = new URLSearchParams(location.search);
+  var qt = q.get('theme');
+  var t = (qt === 'light' || qt === 'dark') ? qt : localStorage.getItem('theme');
   if (t === 'light' || (!t && matchMedia('(prefers-color-scheme: light)').matches)) {
     document.documentElement.setAttribute('data-theme', 'light');
   }
+  var ql = q.get('lang');
+  var l = (ql === 'ru' || ql === 'en') ? ql : localStorage.getItem('lang');
+  if (!l) l = ((navigator.language || '').toLowerCase().indexOf('ru') === 0) ? 'ru' : 'en';
+  if (l === 'ru') document.documentElement.setAttribute('lang', 'ru');
 } catch (e) {}
 </script>
 <link rel="stylesheet" href="/css/tokens.css" />
 <link rel="stylesheet" href="/css/site.css" />
 </head>
-<body>
+<body data-page="home">
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav" data-screen-label="nav">
@@ -29,24 +34,25 @@ try {
   <div class="nav-links" id="navLinks">
     <a href="#inside">Hafiz</a>
     <a href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener">GitHub</a>
-    <a href="/support/">Support</a>
-    <a class="btn btn-gold btn-sm" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> Join TestFlight</a>
+    <a href="/support/" data-i18n="nav.support">Support</a>
+    <a class="btn btn-gold btn-sm" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> <span data-i18n="nav.testflight">Join TestFlight</span></a>
     <button class="theme-toggle" type="button" aria-label="Switch appearance"><span class="moon" data-lucide="moon"></span><span class="sun" data-lucide="sun"></span></button>
+    <button class="lang-toggle" type="button" aria-label="Switch language">RU</button>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ============ HERO ============ -->
 <header class="hero wrap" id="top">
-  <p class="eyebrow center reveal">Quran memorization · iPhone &amp; iPad</p>
+  <p class="eyebrow center reveal" data-i18n="hero.eyebrow">Quran memorization · iPhone &amp; iPad</p>
   <div class="kicker reveal d1">Hafiz</div>
-  <h1 class="display reveal d1">A calm Quran memorization app for iPhone &amp; iPad.</h1>
-  <p class="lead hero-sub reveal d2">Built for Muslims who want to memorize, revise, listen, and stay consistent with the Qur'an — without ads, noise, or pressure.</p>
+  <h1 class="display reveal d1" data-i18n="hero.h1">A calm Quran memorization app for iPhone &amp; iPad.</h1>
+  <p class="lead hero-sub reveal d2" data-i18n="hero.lead">Built for Muslims who want to memorize, revise, listen, and stay consistent with the Qur'an — without ads, noise, or pressure.</p>
   <div class="cta reveal d3">
-    <a class="btn btn-gold" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> Join TestFlight</a>
-    <a class="btn btn-ghost" href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener"><span data-lucide="github"></span> View on GitHub</a>
+    <a class="btn btn-gold" href="https://testflight.apple.com/join/pdGghRVm" target="_blank" rel="noopener"><span data-lucide="send"></span> <span data-i18n="cta.testflight">Join TestFlight</span></a>
+    <a class="btn btn-ghost" href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener"><span data-lucide="github"></span> <span data-i18n="cta.github">View on GitHub</span></a>
   </div>
-  <p class="beta-note reveal d3"><span class="beta-dot"></span> Currently in private beta · iOS &amp; iPadOS</p>
+  <p class="beta-note reveal d3"><span class="beta-dot"></span> <span data-i18n="hero.beta">Currently in private beta · iOS &amp; iPadOS</span></p>
 
   <div class="hero-stage reveal d3">
     <div class="device side l float">
@@ -64,47 +70,47 @@ try {
 <!-- ============ PRODUCT PROMISE ============ -->
 <section class="section wrap" id="features">
   <div class="section-head center reveal">
-    <p class="eyebrow center">The daily practice</p>
-    <h2 class="display">Designed for hifz, <span class="gold serif">not distraction.</span></h2>
-    <p class="lead">Hafiz brings together daily memorization, revision, Mushaf reading, audio listening, widgets, and progress tracking in one quiet Apple-native experience.</p>
+    <p class="eyebrow center" data-i18n="features.eyebrow">The daily practice</p>
+    <h2 class="display" data-i18n="features.h2">Designed for hifz, <span class="gold serif">not distraction.</span></h2>
+    <p class="lead" data-i18n="features.lead">Hafiz brings together daily memorization, revision, Mushaf reading, audio listening, widgets, and progress tracking in one quiet Apple-native experience.</p>
   </div>
 
   <div class="features">
     <article class="feature reveal">
       <div class="fic"><span data-lucide="book-plus"></span></div>
-      <div class="k">New memorization</div>
-      <h3>Sabaq</h3>
-      <p>Plan and continue new memorization, one calm daily portion at a time.</p>
+      <div class="k" data-i18n="f1.k">New memorization</div>
+      <h3 data-i18n="f1.t">Sabaq</h3>
+      <p data-i18n="f1.p">Plan and continue new memorization, one calm daily portion at a time.</p>
     </article>
     <article class="feature reveal d1">
       <div class="fic"><span data-lucide="history"></span></div>
-      <div class="k">Recent review</div>
-      <h3>Sabqi</h3>
-      <p>Keep recent memorization fresh with structured, spaced revision.</p>
+      <div class="k" data-i18n="f2.k">Recent review</div>
+      <h3 data-i18n="f2.t">Sabqi</h3>
+      <p data-i18n="f2.p">Keep recent memorization fresh with structured, spaced revision.</p>
     </article>
     <article class="feature reveal d2">
       <div class="fic"><span data-lucide="layers"></span></div>
-      <div class="k">Long-term recall</div>
-      <h3>Manzil</h3>
-      <p>Review older memorization with structure, so what you learn stays.</p>
+      <div class="k" data-i18n="f3.k">Long-term recall</div>
+      <h3 data-i18n="f3.t">Manzil</h3>
+      <p data-i18n="f3.p">Review older memorization with structure, so what you learn stays.</p>
     </article>
     <article class="feature reveal">
       <div class="fic"><span data-lucide="book-open"></span></div>
-      <div class="k">Reading</div>
-      <h3>Mushaf</h3>
-      <p>Read with a clean, focused Qur'an view built for daily review.</p>
+      <div class="k" data-i18n="f4.k">Reading</div>
+      <h3 data-i18n="f4.t">Mushaf</h3>
+      <p data-i18n="f4.p">Read with a clean, focused Qur'an view built for daily review.</p>
     </article>
     <article class="feature reveal d1">
       <div class="fic"><span data-lucide="headphones"></span></div>
-      <div class="k">Listening</div>
-      <h3>Audio</h3>
-      <p>Listen, repeat, and revise with calm background sounds and reciters.</p>
+      <div class="k" data-i18n="f5.k">Listening</div>
+      <h3 data-i18n="f5.t">Audio</h3>
+      <p data-i18n="f5.p">Listen, repeat, and revise with calm background sounds and reciters.</p>
     </article>
     <article class="feature reveal d2">
       <div class="fic"><span data-lucide="layout-grid"></span></div>
-      <div class="k">Home Screen</div>
-      <h3>Widgets</h3>
-      <p>Keep your hifz visible from the Home Screen, right where you glance.</p>
+      <div class="k" data-i18n="f6.k">Home Screen</div>
+      <h3 data-i18n="f6.t">Widgets</h3>
+      <p data-i18n="f6.p">Keep your hifz visible from the Home Screen, right where you glance.</p>
     </article>
   </div>
 </section>
@@ -112,8 +118,8 @@ try {
 <!-- ============ INSIDE HAFIZ ============ -->
 <section class="section wrap" id="inside">
   <div class="section-head reveal">
-    <p class="eyebrow">Inside Hafiz</p>
-    <h2 class="display">One quiet place to <span class="gold serif">return to the Qur'an.</span></h2>
+    <p class="eyebrow" data-i18n="inside.eyebrow">Inside Hafiz</p>
+    <h2 class="display" data-i18n="inside.h2">One quiet place to <span class="gold serif">return to the Qur'an.</span></h2>
   </div>
 
   <div class="showcase">
@@ -123,10 +129,10 @@ try {
         <div class="device"><div class="screen"><img data-screen="today" src="/assets/screen-today-dark.jpg" alt="Hafiz Today screen" loading="lazy" /></div></div>
       </div>
       <div class="block-copy">
-        <div class="k">Today</div>
-        <h3>See your day at a glance.</h3>
-        <p>See what to memorize, revise, and continue today — one clear plan that keeps the daily rhythm without pressure.</p>
-        <ul class="mini-list"><li>Sabaq</li><li>Sabqi</li><li>Manzil</li><li>Hifz progress</li></ul>
+        <div class="k" data-i18n="b1.k">Today</div>
+        <h3 data-i18n="b1.t">See your day at a glance.</h3>
+        <p data-i18n="b1.p">See what to memorize, revise, and continue today — one clear plan that keeps the daily rhythm without pressure.</p>
+        <ul class="mini-list"><li data-i18n="chip.sabaq">Sabaq</li><li data-i18n="chip.sabqi">Sabqi</li><li data-i18n="chip.manzil">Manzil</li><li data-i18n="chip.hifz">Hifz progress</li></ul>
       </div>
     </div>
 
@@ -136,10 +142,10 @@ try {
         <div class="device"><div class="screen"><img data-screen="mushaf" src="/assets/screen-mushaf-dark.jpg" alt="Hafiz Mushaf reading screen" loading="lazy" /></div></div>
       </div>
       <div class="block-copy">
-        <div class="k">Mushaf</div>
-        <h3>A focused reading experience.</h3>
-        <p>A distraction-free reading surface for daily Qur'an reading and review — the page, the text, and nothing competing for your attention.</p>
-        <ul class="mini-list"><li>Uthmani script</li><li>Page view</li><li>Continue reading</li></ul>
+        <div class="k" data-i18n="b2.k">Mushaf</div>
+        <h3 data-i18n="b2.t">A focused reading experience.</h3>
+        <p data-i18n="b2.p">A distraction-free reading surface for daily Qur'an reading and review — the page, the text, and nothing competing for your attention.</p>
+        <ul class="mini-list"><li data-i18n="chip.uthmani">Uthmani script</li><li data-i18n="chip.pageview">Page view</li><li data-i18n="chip.continue">Continue reading</li></ul>
       </div>
     </div>
 
@@ -149,10 +155,10 @@ try {
         <div class="device"><div class="screen"><img data-screen="player" src="/assets/screen-player-dark.jpg" alt="Hafiz Audio player screen" loading="lazy" /></div></div>
       </div>
       <div class="block-copy">
-        <div class="k">Audio</div>
-        <h3>Listen, repeat, revise.</h3>
-        <p>Reciters, playlists, background sounds, a sleep timer, and quick listening — for revision on the move or a calm moment at night.</p>
-        <ul class="mini-list"><li>Reciters</li><li>Background sounds</li><li>Sleep timer</li></ul>
+        <div class="k" data-i18n="b3.k">Audio</div>
+        <h3 data-i18n="b3.t">Listen, repeat, revise.</h3>
+        <p data-i18n="b3.p">Reciters, playlists, background sounds, a sleep timer, and quick listening — for revision on the move or a calm moment at night.</p>
+        <ul class="mini-list"><li data-i18n="chip.reciters">Reciters</li><li data-i18n="chip.bg">Background sounds</li><li data-i18n="chip.sleep">Sleep timer</li></ul>
       </div>
     </div>
 
@@ -184,10 +190,10 @@ try {
         </div>
       </div>
       <div class="block-copy">
-        <div class="k">Widgets</div>
-        <h3>Your hifz on the Home Screen.</h3>
-        <p>Your sabaq, progress, audio, and ayah reminders — directly on the Home Screen, so the next small step is always one glance away.</p>
-        <ul class="mini-list"><li>Sabaq</li><li>Progress</li><li>Ayah reminder</li></ul>
+        <div class="k" data-i18n="b4.k">Widgets</div>
+        <h3 data-i18n="b4.t">Your hifz on the Home Screen.</h3>
+        <p data-i18n="b4.p">Your sabaq, progress, audio, and ayah reminders — directly on the Home Screen, so the next small step is always one glance away.</p>
+        <ul class="mini-list"><li data-i18n="chip.sabaq">Sabaq</li><li data-i18n="chip.progress">Progress</li><li data-i18n="chip.ayah">Ayah reminder</li></ul>
       </div>
     </div>
   </div>
@@ -196,22 +202,22 @@ try {
 <!-- ============ APPEARANCE ============ -->
 <section class="section wrap" id="appearance">
   <div class="section-head center reveal">
-    <p class="eyebrow center">Appearance</p>
-    <h2 class="display">Warm paper by day, <span class="gold serif">obsidian by night.</span></h2>
-    <p class="lead">Hafiz comes in two appearances: a warm paper light mode and the original obsidian dark. It follows your system setting — on iPhone and iPad alike.</p>
+    <p class="eyebrow center" data-i18n="app.eyebrow">Appearance</p>
+    <h2 class="display" data-i18n="app.h2">Warm paper by day, <span class="gold serif">obsidian by night.</span></h2>
+    <p class="lead" data-i18n="app.lead">Hafiz comes in two appearances: a warm paper light mode and the original obsidian dark. It follows your system setting — on iPhone and iPad alike.</p>
   </div>
   <div class="appearance-stage">
     <div class="appearance-item on-paper reveal">
       <div class="well">
         <div class="device"><div class="screen"><img src="/assets/screen-today-light.jpg" alt="Hafiz Today screen in light appearance" loading="lazy" /></div></div>
       </div>
-      <span class="alabel"><span data-lucide="sun"></span> Light · Paper</span>
+      <span class="alabel"><span data-lucide="sun"></span> <span data-i18n="app.light">Light · Paper</span></span>
     </div>
     <div class="appearance-item on-obsidian reveal d1">
       <div class="well">
         <div class="device"><div class="screen"><img src="/assets/screen-today-dark.jpg" alt="Hafiz Today screen in dark appearance" loading="lazy" /></div></div>
       </div>
-      <span class="alabel"><span data-lucide="moon"></span> Dark · Obsidian</span>
+      <span class="alabel"><span data-lucide="moon"></span> <span data-i18n="app.dark">Dark · Obsidian</span></span>
     </div>
   </div>
 </section>
@@ -219,17 +225,17 @@ try {
 <!-- ============ PHILOSOPHY ============ -->
 <section class="section wrap philosophy" id="philosophy">
   <div class="section-head reveal">
-    <p class="eyebrow">Philosophy</p>
-    <h2 class="display">Quiet <span class="gold serif">by design.</span></h2>
-    <p class="lead">Hafiz is built with a simple rule: the app should help you return to the Qur'an, not compete for your attention.</p>
+    <p class="eyebrow" data-i18n="phil.eyebrow">Philosophy</p>
+    <h2 class="display" data-i18n="phil.h2">Quiet <span class="gold serif">by design.</span></h2>
+    <p class="lead" data-i18n="phil.lead">Hafiz is built with a simple rule: the app should help you return to the Qur'an, not compete for your attention.</p>
   </div>
   <div class="principles">
-    <div class="principle reveal"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext">No ads</div></div></div>
-    <div class="principle reveal d1"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext">No visual noise</div></div></div>
-    <div class="principle reveal d2"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext">No unnecessary notifications</div></div></div>
-    <div class="principle reveal"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext">No social pressure</div></div></div>
-    <div class="principle reveal d1"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext">No forced paywall</div></div></div>
-    <div class="principle reveal d2"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext">Privacy-first and offline-friendly</div></div></div>
+    <div class="principle reveal"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext" data-i18n="phil.p1">No ads</div></div></div>
+    <div class="principle reveal d1"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext" data-i18n="phil.p2">No visual noise</div></div></div>
+    <div class="principle reveal d2"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext" data-i18n="phil.p3">No unnecessary notifications</div></div></div>
+    <div class="principle reveal"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext" data-i18n="phil.p4">No social pressure</div></div></div>
+    <div class="principle reveal d1"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext" data-i18n="phil.p5">No forced paywall</div></div></div>
+    <div class="principle reveal d2"><span class="pcheck"><span data-lucide="check"></span></span><div><div class="ptext" data-i18n="phil.p6">Privacy-first and offline-friendly</div></div></div>
   </div>
 </section>
 
@@ -238,12 +244,12 @@ try {
   <div class="support-card reveal">
     <div class="support-body">
       <div class="heart"><span data-lucide="heart"></span></div>
-      <h2 class="display">Free, ad-free, and <span class="gold serif">supported by choice.</span></h2>
-      <p class="lead">Hafiz is designed to remain free and ad-free. Optional support helps keep development going, but the core experience stays open. <a href="/support/" style="color:var(--primary-accent)">See support &amp; contact →</a></p>
+      <h2 class="display" data-i18n="sup.h2">Free, ad-free, and <span class="gold serif">supported by choice.</span></h2>
+      <p class="lead" data-i18n="sup.lead.home">Hafiz is designed to remain free and ad-free. Optional support helps keep development going, but the core experience stays open. <a href="/support/" style="color:var(--primary-accent)">See support &amp; contact →</a></p>
       <div class="support-tiers">
-        <span class="tier"><b>$1.99</b> · Small support</span>
-        <span class="tier"><b>$4.99</b> · Generous</span>
-        <span class="tier"><b>$9.99</b> · Big contribution</span>
+        <span class="tier" data-i18n="sup.t1"><b>$1.99</b> · Small support</span>
+        <span class="tier" data-i18n="sup.t2"><b>$4.99</b> · Generous</span>
+        <span class="tier" data-i18n="sup.t3"><b>$9.99</b> · Big contribution</span>
       </div>
     </div>
     <div class="support-media">
@@ -255,19 +261,19 @@ try {
 <!-- ============ ABOUT ============ -->
 <section class="section wrap" id="about">
   <div class="section-head reveal">
-    <p class="eyebrow">About</p>
-    <h2 class="display">Built by <span class="gold serif">Abbos Oktambayev.</span></h2>
+    <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+    <h2 class="display" data-i18n="about.h2">Built by <span class="gold serif">Abbos Oktambayev.</span></h2>
   </div>
   <div class="about-grid">
     <div class="about-copy reveal d1">
-      <p>I'm an iOS developer from Astana, Kazakhstan, building calm Islamic products for Apple platforms.</p>
-      <p class="small">My focus is simple: useful tools, thoughtful design, privacy, and a product experience that feels native to iPhone.</p>
+      <p data-i18n="about.p1">I'm an iOS developer from Astana, Kazakhstan, building calm Islamic products for Apple platforms.</p>
+      <p class="small" data-i18n="about.p2">My focus is simple: useful tools, thoughtful design, privacy, and a product experience that feels native to iPhone.</p>
     </div>
     <div class="signature-card reveal d2">
       <div class="icon"><img data-logo src="/assets/app-icon-dark.png" alt="Hafiz app icon" /></div>
       <div class="sname">Hafiz</div>
       <div class="srole">abbos.app</div>
-      <div class="sloc">Astana · Kazakhstan</div>
+      <div class="sloc" data-i18n="about.loc">Astana · Kazakhstan</div>
     </div>
   </div>
 </section>
@@ -280,23 +286,24 @@ try {
         <span class="icon"><img data-logo src="/assets/app-icon-dark.png" alt="Hafiz app icon" /></span>
         <span class="name">abbos.app</span>
       </div>
-      <p class="tagline">Building calm Islamic products for Apple platforms.</p>
+      <p class="tagline" data-i18n="foot.tagline">Building calm Islamic products for Apple platforms.</p>
     </div>
     <div class="footer-links">
       <a href="#inside">Hafiz</a>
-      <a href="/privacy/">Privacy Policy</a>
-      <a href="/support/">Support</a>
+      <a href="/privacy/" data-i18n="foot.privacy">Privacy Policy</a>
+      <a href="/support/" data-i18n="nav.support">Support</a>
       <a href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:oktambayevabbos1@gmail.com">Contact</a>
+      <a href="mailto:oktambayevabbos1@gmail.com" data-i18n="foot.contact">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 abbos.app · Hafiz</span>
-    <span>Made with intention · Astana</span>
+    <span data-i18n="foot.made">Made with intention · Astana</span>
   </div>
 </footer>
 
 <script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+<script src="/js/i18n.js"></script>
 <script src="/js/site.js"></script>
 </body>
 </html>

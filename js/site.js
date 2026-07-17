@@ -52,6 +52,47 @@
     });
   }
 
+  // Language (EN lives in the markup; RU comes from js/i18n.js)
+  function currentLang() {
+    return root.getAttribute('lang') === 'ru' ? 'ru' : 'en';
+  }
+
+  var metaDesc = document.querySelector('meta[name="description"]');
+  var enMeta = { title: document.title, desc: metaDesc ? metaDesc.content : '' };
+  var page = document.body.getAttribute('data-page') || 'home';
+
+  function applyLang(lang, persist) {
+    var dict = (window.I18N && window.I18N.ru) || {};
+    root.setAttribute('lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      if (lang === 'ru' && dict[key]) el.innerHTML = dict[key];
+      else el.innerHTML = el.getAttribute('data-en');
+    });
+    if (lang === 'ru' && dict['meta.' + page + '.title']) {
+      document.title = dict['meta.' + page + '.title'];
+      if (metaDesc && dict['meta.' + page + '.desc']) metaDesc.content = dict['meta.' + page + '.desc'];
+    } else {
+      document.title = enMeta.title;
+      if (metaDesc) metaDesc.content = enMeta.desc;
+    }
+    document.querySelectorAll('.lang-toggle').forEach(function (b) {
+      b.textContent = lang === 'ru' ? 'EN' : 'RU';
+    });
+    if (persist) {
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+  }
+
+  if (currentLang() === 'ru') applyLang('ru', false);
+
+  document.querySelectorAll('.lang-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      applyLang(currentLang() === 'ru' ? 'en' : 'ru', true);
+    });
+  });
+
   // Nav surface on scroll
   var nav = document.getElementById('nav');
   function onScroll() {
