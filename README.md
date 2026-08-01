@@ -41,6 +41,8 @@ The app opens the page with technical parameters — `/feedback/?v=1.1&b=9&d=iPh
 
 With JavaScript the form submits over `fetch` and shows the sent/error states in place. Without JavaScript it is a plain HTML POST and Formspree redirects to `/feedback/thanks/` (the `_next` hidden field).
 
+The form takes text only — Formspree accepts attachments on paid plans, and the free plan is deliberate here. Screenshots go by email instead: the link under the send button opens a mail draft with the type, whatever the visitor has already typed, and the version details filled in, so all that's left is to attach the picture. The body is assembled from the on-page text, so it follows the EN/RU toggle; without JavaScript the plain `mailto:` in the markup still opens an empty draft.
+
 ## Design
 
 Built on the Abbos Design System — dark-first (obsidian) with a warm-paper light theme, one warm-gold accent per screen, muted emerald as the everyday workhorse, Cormorant Garamond for editorial headings, system sans for UI text, DM Mono for tracked labels. Hairline borders, no gradients/glow/glassmorphism, slow soft motion.

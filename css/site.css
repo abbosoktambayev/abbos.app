@@ -913,6 +913,26 @@ html[data-theme="light"] .device { border-color: rgba(28, 26, 21, 0.22); }
   margin: 0;
 }
 .form-note a { color: var(--primary-accent); text-decoration: underline; }
+.form-aside {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 0.7px solid var(--hairline-soft);
+}
+.form-aside .fa-icon { color: var(--text-tertiary); flex: none; display: flex; margin-top: 2px; }
+.form-aside svg { width: 17px; height: 17px; }
+.form-aside p {
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 56ch;
+}
+.form-aside a { color: var(--primary-accent); text-decoration: underline; white-space: nowrap; }
+
 .form-status {
   font-family: var(--font-mono-latin);
   font-size: var(--text-meta);

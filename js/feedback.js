@@ -44,6 +44,48 @@
   document.getElementById('metaCard').hidden = !hasMeta;
   document.getElementById('metaEmpty').hidden = hasMeta;
 
+  // ---------- "send a screenshot by email" ----------
+  // The form itself takes text only. This link opens the visitor's mail
+  // client with the type, their draft and the version details already in
+  // the body, so the only thing left to do is attach the picture.
+  // Without JS the plain mailto in the markup still works.
+  var mailto = document.getElementById('fbMailto');
+
+  function buildMailto() {
+    var lines = [];
+    var typeLabel = document.getElementById('fbMailType').textContent;
+    var checked = form.querySelector('input[name="type"]:checked');
+    if (checked) lines.push(typeLabel + ': ' + checked.nextElementSibling.textContent.trim());
+
+    var draft = document.getElementById('fbMessage').value.trim();
+    if (draft) lines.push('', draft.slice(0, 1500));
+
+    var rows = form.querySelectorAll('.meta-row:not([hidden])');
+    if (rows.length) {
+      lines.push('', document.getElementById('fbMailMeta').textContent);
+      Array.prototype.forEach.call(rows, function (row) {
+        lines.push(row.querySelector('dt').textContent + ': ' + row.querySelector('.meta-value').textContent);
+      });
+    }
+
+    lines.push('', document.getElementById('fbMailHint').textContent);
+
+    mailto.href = 'mailto:oktambayevabbos1@gmail.com' +
+      '?subject=' + encodeURIComponent('Hafiz — feedback + screenshot') +
+      '&body=' + encodeURIComponent(lines.join('\r\n'));
+  }
+
+  if (mailto) {
+    buildMailto();
+    form.addEventListener('input', buildMailto);
+    form.addEventListener('change', buildMailto);
+    // the body is built from on-page text, so it has to follow the EN/RU
+    // toggle too — site.js swaps the strings before this listener runs
+    document.querySelectorAll('.lang-toggle').forEach(function (btn) {
+      btn.addEventListener('click', buildMailto);
+    });
+  }
+
   // ---------- submit states: idle → sending → sent | error ----------
   var submit = document.getElementById('fbSubmit');
   var idleLabel = document.getElementById('fbSubmitIdle');
