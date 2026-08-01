@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Report a bug or suggest an idea — Hafiz</title>
+<meta name="description" content="Report a bug in Hafiz or suggest an idea. No account needed, no personal data required — just tell us what happened." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="/assets/app-icon.png" />
+<script>
+try {
+  var q = new URLSearchParams(location.search);
+  var qt = q.get('theme');
+  var t = (qt === 'light' || qt === 'dark') ? qt : localStorage.getItem('theme');
+  if (t === 'light' || (!t && matchMedia('(prefers-color-scheme: light)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  var ql = q.get('lang');
+  var l = (ql === 'ru' || ql === 'en') ? ql : localStorage.getItem('lang');
+  if (!l) l = ((navigator.language || '').toLowerCase().indexOf('ru') === 0) ? 'ru' : 'en';
+  if (l === 'ru') document.documentElement.setAttribute('lang', 'ru');
+} catch (e) {}
+</script>
+<link rel="stylesheet" href="/css/tokens.css" />
+<link rel="stylesheet" href="/css/site.css" />
+</head>
+<body data-page="feedback">
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav" data-screen-label="nav">
+  <a class="brand" href="/" aria-label="Hafiz home">
+    <span class="icon"><img data-logo src="/assets/app-icon-dark.png" alt="Hafiz app icon" /></span>
+    <span class="name">Hafiz</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="/#inside">Hafiz</a>
+    <a href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener">GitHub</a>
+    <a href="/support/" data-i18n="nav.support">Support</a>
+    <a class="btn btn-gold btn-sm" href="https://apps.apple.com/app/id6779406556" target="_blank" rel="noopener"><span data-lucide="download"></span> <span data-i18n="nav.appstore">Get on the App Store</span></a>
+    <button class="theme-toggle" type="button" aria-label="Switch appearance"><span class="moon" data-lucide="moon"></span><span class="sun" data-lucide="sun"></span></button>
+    <button class="lang-toggle" type="button" aria-label="Switch language">RU</button>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ============ FEEDBACK ============ -->
+<section class="section wrap page-top">
+  <div class="section-head reveal">
+    <p class="eyebrow" data-i18n="fb.eyebrow">Feedback</p>
+    <h1 class="display" data-i18n="fb.h1">Report a bug <span class="gold serif">or suggest an idea.</span></h1>
+    <p class="lead" data-i18n="fb.lead">No account, no sign-up, nothing personal required. Describe what happened — or what you'd like Hafiz to do — and it lands directly in the developer's inbox.</p>
+  </div>
+
+  <!-- ============================================================
+       FORM ENDPOINT — the one place to paste your own form key.
+       Replace YOUR_FORM_ID in the action below with the ID from
+       your Formspree form (Formspree → your form → endpoint,
+       looks like https://formspree.io/f/abcdwxyz).
+       Nothing else needs to change: the JS reads this same action,
+       so plain-HTML submits and JS submits use one address.
+
+       Using Web3Forms instead? Set the action to
+       https://api.web3forms.com/submit, swap the hidden _next field
+       for  <input type="hidden" name="redirect" value="https://abbos.app/feedback/thanks/">
+       and add <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">.
+       ============================================================ -->
+  <form class="form-card reveal d1"
+        id="feedbackForm"
+        method="POST"
+        action="https://formspree.io/f/mykrqnyp">
+
+    <!-- no-JS: after a plain submit Formspree redirects here -->
+    <input type="hidden" name="_next" value="https://abbos.app/feedback/thanks/" />
+    <input type="hidden" name="_subject" value="Hafiz — feedback from abbos.app" />
+    <!-- spam honeypot: real people never fill this in -->
+    <p class="hp" aria-hidden="true">
+      <label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+    </p>
+
+    <!-- app metadata, filled from the URL by js/feedback.js -->
+    <input type="hidden" name="app_version" value="" />
+    <input type="hidden" name="app_build" value="" />
+    <input type="hidden" name="device" value="" />
+    <input type="hidden" name="os_version" value="" />
+    <input type="hidden" name="app_language" value="" />
+
+    <fieldset class="field seg-field">
+      <legend class="field-label" data-i18n="fb.type">What is this about?</legend>
+      <div class="seg">
+        <label class="seg-item">
+          <input type="radio" name="type" value="bug" checked />
+          <span data-i18n="fb.type.bug">Something is broken</span>
+        </label>
+        <label class="seg-item">
+          <input type="radio" name="type" value="idea" />
+          <span data-i18n="fb.type.idea">An idea</span>
+        </label>
+        <label class="seg-item">
+          <input type="radio" name="type" value="other" />
+          <span data-i18n="fb.type.other">Something else</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label class="field-label" for="fbMessage" data-i18n="fb.msg">Your message</label>
+      <p class="field-hint" id="fbMessageHint" data-i18n="fb.msg.hint">What happened, what you expected, and how to repeat it — as much or as little as you like.</p>
+      <textarea class="input textarea"
+                id="fbMessage"
+                name="message"
+                rows="7"
+                required
+                maxlength="4000"
+                aria-describedby="fbMessageHint"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="fbEmail">
+        <span data-i18n="fb.email">Email for a reply</span>
+        <span class="field-optional" data-i18n="fb.optional">optional</span>
+      </label>
+      <p class="field-hint" id="fbEmailHint" data-i18n="fb.email.hint">Only used to answer you. Leave it empty and the message stays anonymous.</p>
+      <input class="input"
+             id="fbEmail"
+             name="email"
+             type="email"
+             autocomplete="email"
+             inputmode="email"
+             aria-describedby="fbEmailHint" />
+    </div>
+
+    <!-- ---------- version details ---------- -->
+    <div class="meta-card" id="metaCard" hidden>
+      <p class="meta-title" data-i18n="fb.meta.title">Version details sent with your message</p>
+      <dl class="meta-list">
+        <div class="meta-row" id="metaVersion">
+          <dt data-i18n="fb.meta.v">App version</dt>
+          <dd class="meta-value"></dd>
+        </div>
+        <div class="meta-row" id="metaBuild">
+          <dt data-i18n="fb.meta.b">Build</dt>
+          <dd class="meta-value"></dd>
+        </div>
+        <div class="meta-row" id="metaDevice">
+          <dt data-i18n="fb.meta.d">Device</dt>
+          <dd class="meta-value"></dd>
+        </div>
+        <div class="meta-row" id="metaOs">
+          <dt data-i18n="fb.meta.os">iOS version</dt>
+          <dd class="meta-value"></dd>
+        </div>
+        <div class="meta-row" id="metaLang">
+          <dt data-i18n="fb.meta.lang">App language</dt>
+          <dd class="meta-value"></dd>
+        </div>
+      </dl>
+      <p class="meta-note" data-i18n="fb.meta.hint">Technical only — no name, no account, no identifier. This is everything the app adds.</p>
+    </div>
+    <p class="meta-empty" id="metaEmpty" data-i18n="fb.meta.empty">No version details are attached — this page was opened outside the app. Feel free to mention your app version in the message.</p>
+
+    <div class="form-alert" id="fbError" role="alert" hidden>
+      <span class="fa-icon" data-lucide="alert-circle"></span>
+      <span data-i18n="fb.err">The message could not be sent. Check your connection and try again — or write to <a href="mailto:oktambayevabbos1@gmail.com">oktambayevabbos1@gmail.com</a>.</span>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-gold" type="submit" id="fbSubmit">
+        <span data-lucide="send"></span>
+        <span id="fbSubmitIdle" data-i18n="fb.send">Send message</span>
+        <span id="fbSubmitBusy" data-i18n="fb.sending" hidden>Sending…</span>
+      </button>
+      <p class="form-note">
+        <span data-i18n="fb.privacy">Messages go to the developer only.</span>
+        <a href="/privacy/" data-i18n="foot.privacy">Privacy Policy</a>
+      </p>
+    </div>
+    <p class="form-status" id="fbStatus" role="status" aria-live="polite"></p>
+  </form>
+
+  <!-- ---------- sent state (JS submits stay on the page) ---------- -->
+  <div class="sent-card reveal d1" id="fbSent" tabindex="-1" hidden>
+    <div class="sent-icon"><span data-lucide="check"></span></div>
+    <h2 class="display" data-i18n="fb.sent.h">Thank you — <span class="gold serif">message received.</span></h2>
+    <p class="lead" data-i18n="fb.sent.p">Every report is read personally. If you left an email address, you'll get a reply.</p>
+    <div class="sent-actions">
+      <a class="btn btn-ghost" href="/" data-i18n="fb.sent.back">Back to Hafiz</a>
+      <a class="btn btn-ghost" href="/support/" data-i18n="nav.support">Support</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer wrap">
+  <div class="footer-top reveal">
+    <div>
+      <div class="brand">
+        <span class="icon"><img data-logo src="/assets/app-icon-dark.png" alt="Hafiz app icon" /></span>
+        <span class="name">abbos.app</span>
+      </div>
+      <p class="tagline" data-i18n="foot.tagline">Building calm Islamic products for Apple platforms.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/#inside">Hafiz</a>
+      <a href="/privacy/" data-i18n="foot.privacy">Privacy Policy</a>
+      <a href="/support/" data-i18n="nav.support">Support</a>
+      <a href="https://github.com/abbosoktambayev/hafiz-showcase" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:oktambayevabbos1@gmail.com" data-i18n="foot.contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 abbos.app · Hafiz</span>
+    <span data-i18n="foot.made">Made with intention · Astana</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+<script src="/js/i18n.js"></script>
+<script src="/js/site.js"></script>
+<script src="/js/feedback.js"></script>
+</body>
+</html>

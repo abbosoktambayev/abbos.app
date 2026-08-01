@@ -9,24 +9,37 @@ The marketing site for **Hafiz**, a calm Quran memorization app for iPhone & iPa
 | `/` | Landing page — hero, features, product tour, philosophy, support, about |
 | `/privacy/` | Privacy Policy |
 | `/support/` | Support the project + contact |
+| `/feedback/` | Report a bug or suggest an idea (form → Formspree, no backend) |
+| `/feedback/thanks/` | Confirmation the form redirects to when JavaScript is off |
 
 ## Stack
 
 Plain HTML/CSS/JS, no build step. Static files only — deploy by pointing any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages) at the repo root.
 
 ```
-index.html          Landing page
-privacy/index.html  Privacy Policy
-support/index.html  Support & contact
+index.html                 Landing page
+privacy/index.html         Privacy Policy
+support/index.html         Support & contact
+feedback/index.html        Bug report / idea form
+feedback/thanks/index.html No-JS confirmation page
 
 css/tokens.css       Design tokens (color, type, radius, motion) + self-hosted fonts
 css/site.css         Layout & components, shared across all pages
 js/site.js           Theme toggle (light/dark), language toggle (EN/RU), nav scroll state, mobile menu, scroll-reveal animations
 js/i18n.js           Russian strings (English lives in the markup)
+js/feedback.js       /feedback/ only — reads the app's URL parameters, submit states (progressive enhancement)
 
 assets/              Product screenshots (light & dark variants), app icon
 assets/fonts/        Self-hosted Cormorant Garamond (Latin + Cyrillic), DM Mono (Latin), IBM Plex Mono (Latin + Cyrillic) — woff2
 ```
+
+## Feedback form
+
+`/feedback/` posts to [Formspree](https://formspree.io) — no server of our own. The endpoint lives in exactly one place: the `action` attribute of the form in `feedback/index.html`. Replace `YOUR_FORM_ID` with the ID of your own form and nothing else needs to change; `js/feedback.js` reads the same attribute.
+
+The app opens the page with technical parameters — `/feedback/?v=1.1&b=9&d=iPhone15,2&os=18.5&lang=ru` (version, build, device model, iOS version, language). They are sanitized, shown to the visitor in a "version details" card so they can see what they are sending, and copied into hidden fields. Nothing personal is passed or accepted.
+
+With JavaScript the form submits over `fetch` and shows the sent/error states in place. Without JavaScript it is a plain HTML POST and Formspree redirects to `/feedback/thanks/` (the `_next` hidden field).
 
 ## Design
 
