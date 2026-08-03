@@ -3,5 +3,13 @@
   "rewrites": [
     { "source": "/privacy/ru", "destination": "/privacy/index.html" },
     { "source": "/privacy/ru/", "destination": "/privacy/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/hafiz/config.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    }
   ]
 }

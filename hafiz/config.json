@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "mushaf": {
+    "cdnBase": "https://cdn.jsdelivr.net/gh/abbosoktambayev/hafiz-showcase@main/mushaf-cdn/png",
+    "rev": "r4"
+  },
+  "audio": { "recitersURL": null },
+  "notice": null
+}
