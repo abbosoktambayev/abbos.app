@@ -87,9 +87,17 @@
 
   if (currentLang() === 'ru') applyLang('ru', false);
 
+  // Pages that carry a real URL per language (privacy) navigate instead of swapping in place
   document.querySelectorAll('.lang-toggle').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      applyLang(currentLang() === 'ru' ? 'en' : 'ru', true);
+      var next = currentLang() === 'ru' ? 'en' : 'ru';
+      var url = document.body.getAttribute('data-lang-url-' + next);
+      if (url && url !== location.pathname) {
+        try { localStorage.setItem('lang', next); } catch (e) {}
+        location.href = url;
+        return;
+      }
+      applyLang(next, true);
     });
   });
 

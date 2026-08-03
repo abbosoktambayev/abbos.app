@@ -15,15 +15,20 @@ try {
     document.documentElement.setAttribute('data-theme', 'light');
   }
   var ql = q.get('lang');
-  var l = (ql === 'ru' || ql === 'en') ? ql : localStorage.getItem('lang');
+  // /privacy/ru is a real URL for the Russian text — the path is as explicit as ?lang=ru
+  var lp = /\/privacy\/ru\/?$/.test(location.pathname) ? 'ru' : null;
+  var l = (ql === 'ru' || ql === 'en') ? ql : (lp || localStorage.getItem('lang'));
   if (!l) l = ((navigator.language || '').toLowerCase().indexOf('ru') === 0) ? 'ru' : 'en';
   if (l === 'ru') document.documentElement.setAttribute('lang', 'ru');
 } catch (e) {}
 </script>
+<link rel="alternate" hreflang="en" href="https://www.abbos.app/privacy/" />
+<link rel="alternate" hreflang="ru" href="https://www.abbos.app/privacy/ru" />
+<link rel="alternate" hreflang="x-default" href="https://www.abbos.app/privacy/" />
 <link rel="stylesheet" href="/css/tokens.css" />
 <link rel="stylesheet" href="/css/site.css" />
 </head>
-<body data-page="privacy">
+<body data-page="privacy" data-lang-url-en="/privacy/" data-lang-url-ru="/privacy/ru">
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav" data-screen-label="nav">
@@ -48,7 +53,8 @@ try {
     <p class="eyebrow" data-i18n="pr.eyebrow">Legal</p>
     <h1 class="display" data-i18n="pr.h1">Privacy <span class="gold serif">Policy.</span></h1>
     <p class="lead" data-i18n="pr.lead">Hafiz is a Quran memorization app for iPhone. Your privacy matters — Hafiz is designed to be private, calm, and focused. The app does not sell your data, does not show ads, and does not track you across apps or websites.</p>
-    <p class="updated" data-i18n="pr.updated">Last updated · July 27, 2026</p>
+    <p class="updated" data-i18n="pr.updated">Last updated · August 3, 2026</p>
+    <p class="lang-alt" data-i18n="pr.alt"><a href="/privacy/ru" hreflang="ru" lang="ru">Читать по-русски</a></p>
   </div>
 
   <div class="legal reveal d1">
@@ -70,13 +76,19 @@ try {
     </section>
 
     <section>
+      <h2 data-i18n="pr.net.h">Network requests</h2>
+      <p data-i18n="pr.net.p1">The Madani Classic mushaf ships with the app and works offline. Other content is downloaded on demand from public sources: cdn.jsdelivr.net (Tajweed pages), cdn.islamic.network (per-ayah audio), mp3quran.net (surah audio), and api.alquran.cloud (Quran text editions).</p>
+      <p data-i18n="pr.net.p2">These providers may log standard request data, such as your IP address. Hafiz sends them no personal information.</p>
+    </section>
+
+    <section>
       <h2 data-i18n="pr.s4h">Purchases</h2>
       <p data-i18n="pr.s4p1">Optional support purchases are handled by Apple through the App Store. Hafiz does not receive or store your payment card details.</p>
     </section>
 
     <section>
       <h2 data-i18n="pr.s5h">Analytics and tracking</h2>
-      <p data-i18n="pr.s5p0">Hafiz uses anonymous, privacy-first usage analytics (TelemetryDeck) to understand which features are used. It relies on a hashed device identifier — never a name, account, email, or advertising ID — and can be turned off in the app's settings.</p>
+      <p data-i18n="pr.s5p0">Hafiz uses anonymous, privacy-first usage analytics (TelemetryDeck) to understand which features are used. It relies on a hashed device identifier — never a name, account, email, or advertising ID.</p>
       <p data-i18n="pr.s5p1">Hafiz does not use third-party advertising trackers.</p>
       <p data-i18n="pr.s5p2">Hafiz does not track you across apps or websites.</p>
       <p data-i18n="pr.s5p3">Hafiz does not sell or share your personal data.</p>

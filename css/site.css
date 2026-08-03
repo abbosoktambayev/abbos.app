@@ -674,7 +674,8 @@ html[data-theme="light"] .device { border-color: rgba(28, 26, 21, 0.22); }
 .legal p:last-child { margin-bottom: 0; }
 .legal a { color: var(--primary-accent); }
 .legal a:hover { text-decoration: underline; }
-.legal .updated {
+.legal .updated,
+.section-head .updated {
   font-family: var(--font-mono-latin);
   font-size: var(--text-meta);
   letter-spacing: 0.06em;
@@ -682,6 +683,16 @@ html[data-theme="light"] .device { border-color: rgba(28, 26, 21, 0.22); }
   color: var(--text-tertiary);
   margin: 14px 0 0;
 }
+/* EN ⇄ RU cross-link, sits under the "last updated" line */
+.lang-alt {
+  font-family: var(--font-mono-latin);
+  font-size: var(--text-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 8px 0 0;
+}
+.lang-alt a { color: var(--primary-accent); }
+.lang-alt a:hover { text-decoration: underline; }
 
 /* ---------- Contact list (Support page) ---------- */
 .contact-list {
